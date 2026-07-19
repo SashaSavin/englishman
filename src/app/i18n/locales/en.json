@@ -1,0 +1,231 @@
+{
+  "lang": "English",
+  "header": {
+    "theory": "Theory",
+    "activity": "Activity"
+  },
+  "settings": {
+    "title": "Settings",
+    "questionCount": "Questions per quiz",
+    "timerLabel": "Timer per question",
+    "timerOff": "Off",
+    "timerSec": "{n}s"
+  },
+  "setup": {
+    "title": "Ready to Practice?",
+    "description": "Test your knowledge of English tenses — choose what to practice.",
+    "tenses": "Tenses",
+    "forms": "Forms",
+    "selectAll": "Select all",
+    "clear": "Clear",
+    "matchCount": "{count} question matches your selection | {count} questions match your selection",
+    "perQuiz": "{count} per quiz",
+    "start": "Start Quiz",
+    "presentLabel": "Present",
+    "pastLabel": "Past",
+    "futureLabel": "Future",
+    "formAffirmative": "+ Affirmative",
+    "formNegative": "− Negative",
+    "formQuestion": "? Question",
+    "bookmarks": "Bookmarked",
+    "manageBookmarks": "Manage"
+  },
+  "quiz": {
+    "correct": "correct",
+    "correctLabel": "Correct!",
+    "wrongLabel": "Wrong!",
+    "correctAnswer": "Correct answer:",
+    "next": "Next →",
+    "seeResults": "See Results",
+    "exit": "← Exit quiz",
+    "noSession": "No quiz session.",
+    "startNew": "Start a new quiz",
+    "timeUp": "Time's up!",
+    "timeLeft": "{s}s left"
+  },
+  "results": {
+    "title": "Quiz Complete!",
+    "summary": "You answered {score} of {total} correctly",
+    "tryAgain": "Try Again (New Questions)",
+    "changeFilters": "Change Filters",
+    "review": "Review Answers",
+    "perfect": "Perfect! You mastered the simple tenses!",
+    "excellent": "Excellent! Almost perfect!",
+    "great": "Great job! Keep practicing!",
+    "good": "Good effort! Try again to improve.",
+    "keepGoing": "Keep going! Practice makes perfect."
+  },
+  "review": {
+    "title": "Review Answers",
+    "back": "← Back to Results",
+    "correct": "Correct",
+    "wrong": "Wrong",
+    "yourAnswer": "Your answer:",
+    "correctAnswer": "Correct answer:",
+    "question": "Question {n}"
+  },
+  "theory": {
+    "back": "← Back",
+    "signalWords": "Signal words",
+    "present": {
+      "name": "Present Simple",
+      "usage": "Habits, routines, general truths, and regular actions.",
+      "signals": "always, usually, often, sometimes, never, every day, on Mondays",
+      "aff": {
+        "label": "Affirmative (+)",
+        "structure": "I / You / We / They + V1",
+        "ex1": "I work in an office.",
+        "ex2": "They live in London.",
+        "extra1": "He / She / It + V1+s/es",
+        "extra2": "She works in a hospital.",
+        "extra3": "He teaches English."
+      },
+      "neg": {
+        "label": "Negative (−)",
+        "structure": "I / You / We / They + don't + V1",
+        "ex1": "I don't like coffee.",
+        "ex2": "They don't speak French.",
+        "extra1": "He / She / It + doesn't + V1",
+        "extra2": "She doesn't work on Sundays.",
+        "extra3": "He doesn't eat meat."
+      },
+      "ques": {
+        "label": "Question (?)",
+        "structure": "Do + I / you / we / they + V1 ?",
+        "ex1": "Do you like pizza?",
+        "ex2": "Do they live nearby?",
+        "extra1": "Does + he / she / it + V1 ?",
+        "extra2": "Does she speak English?",
+        "extra3": "Does he work here?"
+      }
+    },
+    "past": {
+      "name": "Past Simple",
+      "usage": "Completed actions, events, and states in the past.",
+      "signals": "yesterday, last week, in 2020, ago, then, when",
+      "aff": {
+        "label": "Affirmative (+)",
+        "structure": "Subject + V2 (regular: -ed / irregular)",
+        "ex1": "She watched a movie yesterday.",
+        "ex2": "They went to Paris last summer.",
+        "extra1": "He bought a new car.",
+        "extra2": "I saw a great film.",
+        "extra3": "We visited our grandparents."
+      },
+      "neg": {
+        "label": "Negative (−)",
+        "structure": "Subject + didn't + V1",
+        "ex1": "She didn't go to the party.",
+        "ex2": "They didn't eat breakfast.",
+        "extra1": "He didn't see the accident.",
+        "extra2": "I didn't sleep well.",
+        "extra3": "We didn't enjoy the movie."
+      },
+      "ques": {
+        "label": "Question (?)",
+        "structure": "Did + subject + V1 ?",
+        "ex1": "Did you go to the party?",
+        "ex2": "Did she see the doctor?",
+        "extra1": "Did they eat lunch?",
+        "extra2": "Did he buy a gift?",
+        "extra3": "Did we miss the bus?"
+      }
+    },
+    "future": {
+      "name": "Future Simple",
+      "usage": "Predictions, promises, offers, spontaneous decisions.",
+      "signals": "tomorrow, next week, soon, later, in the future",
+      "aff": {
+        "label": "Affirmative (+)",
+        "structure": "Subject + will + V1",
+        "ex1": "I will call you tomorrow.",
+        "ex2": "She will be here soon.",
+        "extra1": "They will arrive at 8 PM.",
+        "extra2": "It will rain tomorrow.",
+        "extra3": "We will help you."
+      },
+      "neg": {
+        "label": "Negative (−)",
+        "structure": "Subject + won't + V1",
+        "ex1": "I won't be late.",
+        "ex2": "She won't come to the party.",
+        "extra1": "They won't finish on time.",
+        "extra2": "He won't agree with you.",
+        "extra3": "We won't forget."
+      },
+      "ques": {
+        "label": "Question (?)",
+        "structure": "Will + subject + V1 ?",
+        "ex1": "Will you help me?",
+        "ex2": "Will she come to the party?",
+        "extra1": "Will they arrive soon?",
+        "extra2": "Will it rain tomorrow?",
+        "extra3": "Will we be on time?"
+      }
+    }
+  },
+  "bookmarks": {
+    "title": "Bookmarked Questions",
+    "back": "← Back",
+    "empty": "No bookmarked questions yet.",
+    "goPractice": "Go practice and bookmark questions you like!",
+    "remove": "Remove bookmark",
+    "available": "{count} questions available",
+    "start": "Start Quiz"
+  },
+  "tooltip": {
+    "quickTip": "Quick tip",
+    "readTheory": "Read full theory →"
+  },
+  "sidebar": {
+    "home": "Quiz",
+    "theory": "Theory",
+    "activity": "Activity",
+    "game": "Game",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "collapse": "Collapse"
+  },
+  "activity": {
+    "title": "Activity",
+    "subtitle": "Your quiz history over the last year",
+    "back": "← Back",
+    "totalQuizzes": "quizzes",
+    "activeDays": "days active",
+    "streak": "day streak",
+    "less": "Less",
+    "more": "More"
+  },
+  "tense": {
+    "present-simple": "Present Simple",
+    "past-simple": "Past Simple",
+    "future-simple": "Future Simple"
+  },
+  "game": {
+    "title": "Multiplayer Game",
+    "create": "Create Game",
+    "join": "Join Game",
+    "namePlaceholder": "Your name",
+    "codePlaceholder": "Enter room code",
+    "createBtn": "Create Room",
+    "joinBtn": "Join Room",
+    "lobby": "Game Lobby",
+    "shareCode": "Share this code with a friend:",
+    "copy": "Copy code",
+    "copied": "Copied!",
+    "players": "Players",
+    "you": "You",
+    "waiting": "Waiting...",
+    "startBtn": "Start Game",
+    "waitOpponent": "Waiting for opponent to join...",
+    "playing": "Race Quiz",
+    "opponentDone": "Opponent finished",
+    "opponentPlaying": "Opponent is playing...",
+    "next": "Next →",
+    "finish": "Finish",
+    "results": "Game Results",
+    "winner": "Wins!",
+    "dnf": "Did not finish",
+    "playAgain": "Play Again"
+  }
+}

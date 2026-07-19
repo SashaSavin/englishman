@@ -1,0 +1,231 @@
+{
+  "lang": "Русский",
+  "header": {
+    "theory": "Теория",
+    "activity": "Активность"
+  },
+  "settings": {
+    "title": "Настройки",
+    "questionCount": "Вопросов за квиз",
+    "timerLabel": "Таймер на вопрос",
+    "timerOff": "Выкл",
+    "timerSec": "{n}с"
+  },
+  "setup": {
+    "title": "Готовы потренироваться?",
+    "description": "Проверьте знание английских времён — выберите, что отработать.",
+    "tenses": "Времена",
+    "forms": "Формы",
+    "selectAll": "Выбрать все",
+    "clear": "Сбросить",
+    "matchCount": "{count} вопрос подходит под ваш выбор | {count} вопроса подходят под ваш выбор | {count} вопросов подходят под ваш выбор",
+    "perQuiz": "{count} за квиз",
+    "start": "Начать квиз",
+    "presentLabel": "Present",
+    "pastLabel": "Past",
+    "futureLabel": "Future",
+    "formAffirmative": "+ Утверждение",
+    "formNegative": "− Отрицание",
+    "formQuestion": "? Вопрос",
+    "bookmarks": "Избранное",
+    "manageBookmarks": "Управлять"
+  },
+  "quiz": {
+    "correct": "правильных",
+    "correctLabel": "Правильно!",
+    "wrongLabel": "Неправильно!",
+    "correctAnswer": "Правильный ответ:",
+    "next": "Далее →",
+    "seeResults": "Результаты",
+    "exit": "← Выйти",
+    "noSession": "Нет активного квиза.",
+    "startNew": "Начать новый квиз",
+    "timeUp": "Время вышло!",
+    "timeLeft": "осталось {s}с"
+  },
+  "results": {
+    "title": "Квиз завершён!",
+    "summary": "Вы ответили правильно на {score} из {total}",
+    "tryAgain": "Заново (другие вопросы)",
+    "changeFilters": "Изменить фильтры",
+    "review": "Просмотр ответов",
+    "perfect": "Отлично! Вы освоили простые времена!",
+    "excellent": "Превосходно! Почти без ошибок!",
+    "great": "Отличная работа! Продолжайте практиковаться!",
+    "good": "Неплохо! Попробуйте ещё раз.",
+    "keepGoing": "Продолжайте! Практика ведёт к совершенству."
+  },
+  "review": {
+    "title": "Просмотр ответов",
+    "back": "← Назад к результатам",
+    "correct": "Верно",
+    "wrong": "Неверно",
+    "yourAnswer": "Ваш ответ:",
+    "correctAnswer": "Правильный ответ:",
+    "question": "Вопрос {n}"
+  },
+  "theory": {
+    "back": "← Назад",
+    "signalWords": "Слова-маркеры",
+    "present": {
+      "name": "Present Simple",
+      "usage": "Привычки, распорядок дня, общие истины, регулярные действия.",
+      "signals": "always, usually, often, sometimes, never, every day, on Mondays",
+      "aff": {
+        "label": "Утверждение (+)",
+        "structure": "I / You / We / They + V1",
+        "ex1": "I work in an office. — Я работаю в офисе.",
+        "ex2": "They live in London. — Они живут в Лондоне.",
+        "extra1": "He / She / It + V1+s/es",
+        "extra2": "She works in a hospital. — Она работает в больнице.",
+        "extra3": "He teaches English. — Он преподаёт английский."
+      },
+      "neg": {
+        "label": "Отрицание (−)",
+        "structure": "I / You / We / They + don't + V1",
+        "ex1": "I don't like coffee. — Я не люблю кофе.",
+        "ex2": "They don't speak French. — Они не говорят по-французски.",
+        "extra1": "He / She / It + doesn't + V1",
+        "extra2": "She doesn't work on Sundays. — Она не работает по воскресеньям.",
+        "extra3": "He doesn't eat meat. — Он не ест мясо."
+      },
+      "ques": {
+        "label": "Вопрос (?)",
+        "structure": "Do + I / you / we / they + V1 ?",
+        "ex1": "Do you like pizza? — Ты любишь пиццу?",
+        "ex2": "Do they live nearby? — Они живут рядом?",
+        "extra1": "Does + he / she / it + V1 ?",
+        "extra2": "Does she speak English? — Она говорит по-английски?",
+        "extra3": "Does he work here? — Он здесь работает?"
+      }
+    },
+    "past": {
+      "name": "Past Simple",
+      "usage": "Завершённые действия, события и состояния в прошлом.",
+      "signals": "yesterday, last week, in 2020, ago, then, when",
+      "aff": {
+        "label": "Утверждение (+)",
+        "structure": "Subject + V2 (правильный: -ed / неправильный)",
+        "ex1": "She watched a movie yesterday. — Она вчера посмотрела фильм.",
+        "ex2": "They went to Paris last summer. — Они ездили в Париж прошлым летом.",
+        "extra1": "He bought a new car. — Он купил новую машину.",
+        "extra2": "I saw a great film. — Я посмотрел отличный фильм.",
+        "extra3": "We visited our grandparents. — Мы навестили бабушку и дедушку."
+      },
+      "neg": {
+        "label": "Отрицание (−)",
+        "structure": "Subject + didn't + V1",
+        "ex1": "She didn't go to the party. — Она не пошла на вечеринку.",
+        "ex2": "They didn't eat breakfast. — Они не позавтракали.",
+        "extra1": "He didn't see the accident. — Он не видел аварию.",
+        "extra2": "I didn't sleep well. — Я плохо спал.",
+        "extra3": "We didn't enjoy the movie. — Нам не понравился фильм."
+      },
+      "ques": {
+        "label": "Вопрос (?)",
+        "structure": "Did + subject + V1 ?",
+        "ex1": "Did you go to the party? — Ты ходил на вечеринку?",
+        "ex2": "Did she see the doctor? — Она была у врача?",
+        "extra1": "Did they eat lunch? — Они пообедали?",
+        "extra2": "Did he buy a gift? — Он купил подарок?",
+        "extra3": "Did we miss the bus? — Мы опоздали на автобус?"
+      }
+    },
+    "future": {
+      "name": "Future Simple",
+      "usage": "Предсказания, обещания, предложения, спонтанные решения.",
+      "signals": "tomorrow, next week, soon, later, in the future",
+      "aff": {
+        "label": "Утверждение (+)",
+        "structure": "Subject + will + V1",
+        "ex1": "I will call you tomorrow. — Я позвоню тебе завтра.",
+        "ex2": "She will be here soon. — Она скоро будет здесь.",
+        "extra1": "They will arrive at 8 PM. — Они прибудут в 8 вечера.",
+        "extra2": "It will rain tomorrow. — Завтра будет дождь.",
+        "extra3": "We will help you. — Мы поможем тебе."
+      },
+      "neg": {
+        "label": "Отрицание (−)",
+        "structure": "Subject + won't + V1",
+        "ex1": "I won't be late. — Я не опоздаю.",
+        "ex2": "She won't come to the party. — Она не придёт на вечеринку.",
+        "extra1": "They won't finish on time. — Они не закончат вовремя.",
+        "extra2": "He won't agree with you. — Он не согласится с тобой.",
+        "extra3": "We won't forget. — Мы не забудем."
+      },
+      "ques": {
+        "label": "Вопрос (?)",
+        "structure": "Will + subject + V1 ?",
+        "ex1": "Will you help me? — Ты поможешь мне?",
+        "ex2": "Will she come to the party? — Она придёт на вечеринку?",
+        "extra1": "Will they arrive soon? — Они скоро прибудут?",
+        "extra2": "Will it rain tomorrow? — Завтра будет дождь?",
+        "extra3": "Will we be on time? — Мы успеем вовремя?"
+      }
+    }
+  },
+  "bookmarks": {
+    "title": "Избранные вопросы",
+    "back": "← Назад",
+    "empty": "Нет избранных вопросов.",
+    "goPractice": "Потренируйтесь и добавляйте вопросы в избранное!",
+    "remove": "Убрать из избранного",
+    "available": "{count} вопросов доступно",
+    "start": "Начать квиз"
+  },
+  "tooltip": {
+    "quickTip": "Подсказка",
+    "readTheory": "Читать теорию →"
+  },
+  "sidebar": {
+    "home": "Главная",
+    "theory": "Теория",
+    "activity": "Активность",
+    "game": "Игра",
+    "lightMode": "Светлая",
+    "darkMode": "Тёмная",
+    "collapse": "Свернуть"
+  },
+  "activity": {
+    "title": "Активность",
+    "subtitle": "История квизов за последний год",
+    "back": "← Назад",
+    "totalQuizzes": "квизов",
+    "activeDays": "дней активно",
+    "streak": "дней подряд",
+    "less": "Меньше",
+    "more": "Больше"
+  },
+  "tense": {
+    "present-simple": "Present Simple",
+    "past-simple": "Past Simple",
+    "future-simple": "Future Simple"
+  },
+  "game": {
+    "title": "Мультиплеер",
+    "create": "Создать игру",
+    "join": "Присоединиться",
+    "namePlaceholder": "Ваше имя",
+    "codePlaceholder": "Код комнаты",
+    "createBtn": "Создать комнату",
+    "joinBtn": "Войти",
+    "lobby": "Лобби",
+    "shareCode": "Поделитесь этим кодом с другом:",
+    "copy": "Копировать код",
+    "copied": "Скопировано!",
+    "players": "Игроки",
+    "you": "Вы",
+    "waiting": "Ожидание...",
+    "startBtn": "Начать игру",
+    "waitOpponent": "Ожидание соперника...",
+    "playing": "Квиз на скорость",
+    "opponentDone": "Соперник закончил",
+    "opponentPlaying": "Соперник отвечает...",
+    "next": "Далее →",
+    "finish": "Завершить",
+    "results": "Результаты",
+    "winner": "Победил!",
+    "dnf": "Не завершил",
+    "playAgain": "Играть снова"
+  }
+}
