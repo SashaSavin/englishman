@@ -206,9 +206,11 @@
     "create": "Create Game",
     "join": "Join Game",
     "namePlaceholder": "Your name",
+    "nameRequired": "Name is required",
     "codePlaceholder": "Enter room code",
-    "createBtn": "Create Room",
-    "joinBtn": "Join Room",
+    "codeRequired": "Room code is required",
+    "createBtn": "Create Game",
+    "joinBtn": "Join Game",
     "lobby": "Game Lobby",
     "shareCode": "Share this code with a friend:",
     "copy": "Copy code",
@@ -226,6 +228,8 @@
     "results": "Game Results",
     "winner": "Wins!",
     "dnf": "Did not finish",
-    "playAgain": "Play Again"
+    "playAgain": "Play Again",
+    "errorNotFound": "Game not found",
+    "errorRequestFailed": "Request failed"
   }
 }

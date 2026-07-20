@@ -8,12 +8,6 @@
         @click="router.push('/')"
       />
       <MobileNavItem
-        :active="route.name === 'theory'"
-        icon="theory"
-        :label="$t('sidebar.theory')"
-        @click="router.push('/theory')"
-      />
-      <MobileNavItem
         :active="route.name?.startsWith('game')"
         icon="game"
         :label="$t('sidebar.game')"
@@ -24,6 +18,12 @@
         icon="activity"
         :label="$t('sidebar.activity')"
         @click="router.push('/activity')"
+      />
+      <MobileNavItem
+        :active="route.name === 'theory'"
+        icon="theory"
+        :label="$t('sidebar.theory')"
+        @click="router.push('/theory')"
       />
     </div>
   </nav>

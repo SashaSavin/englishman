@@ -178,7 +178,7 @@
     "readTheory": "Читать теорию →"
   },
   "sidebar": {
-    "home": "Главная",
+    "home": "Квиз",
     "theory": "Теория",
     "activity": "Активность",
     "game": "Игра",
@@ -206,9 +206,11 @@
     "create": "Создать игру",
     "join": "Присоединиться",
     "namePlaceholder": "Ваше имя",
+    "nameRequired": "Имя обязательно",
     "codePlaceholder": "Код комнаты",
-    "createBtn": "Создать комнату",
-    "joinBtn": "Войти",
+    "codeRequired": "Код обязателен",
+    "createBtn": "Создать игру",
+    "joinBtn": "Присоединиться",
     "lobby": "Лобби",
     "shareCode": "Поделитесь этим кодом с другом:",
     "copy": "Копировать код",
@@ -226,6 +228,8 @@
     "results": "Результаты",
     "winner": "Победил!",
     "dnf": "Не завершил",
-    "playAgain": "Играть снова"
+    "playAgain": "Играть снова",
+    "errorNotFound": "Игра не найдена",
+    "errorRequestFailed": "Ошибка запроса"
   }
 }

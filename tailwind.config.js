@@ -20,9 +20,12 @@ export default {
         dc: {
           bg: '#313338',
           surface: '#2b2d31',
+          'surface-alt': '#1e1f22',
+          'surface-hover': '#393c41',
           elevated: '#1e1f22',
           hover: '#393c41',
           input: '#1e1f22',
+          text: '#dbdee1',
           'text-normal': '#dbdee1',
           'text-secondary': '#b5bac1',
           'text-muted': '#949ba4',

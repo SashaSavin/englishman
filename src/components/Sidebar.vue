@@ -40,11 +40,11 @@
         @click="router.push('/')"
       />
       <SidebarItem
-        :active="route.name === 'theory'"
+        :active="route.name?.startsWith('game')"
         :expanded="expanded"
-        icon="theory"
-        :label="$t('sidebar.theory')"
-        @click="router.push('/theory')"
+        icon="game"
+        :label="$t('sidebar.game')"
+        @click="router.push('/game')"
       />
       <SidebarItem
         :active="route.name === 'activity'"
@@ -54,11 +54,11 @@
         @click="router.push('/activity')"
       />
       <SidebarItem
-        :active="route.name?.startsWith('game')"
+        :active="route.name === 'theory'"
         :expanded="expanded"
-        icon="game"
-        :label="$t('sidebar.game')"
-        @click="router.push('/game')"
+        icon="theory"
+        :label="$t('sidebar.theory')"
+        @click="router.push('/theory')"
       />
     </nav>
 
