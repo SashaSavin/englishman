@@ -1,11 +1,16 @@
 <template>
   <div>
-    <div class="relative rounded-dc-md mb-6 overflow-hidden select-none"
+    <div v-if="showHero" class="relative rounded-dc-md mb-6 overflow-hidden select-none"
       :class="bgGradient"
       @mouseenter="pause = true"
       @wheel.passive="onWheel"
       @mousedown="onDragStart" @mousemove="onDragMove" @mouseup="onDragEnd" @mouseleave="onDragEnd"
       @touchstart.passive="onDragStart" @touchmove.passive="onDragMove" @touchend="onDragEnd">
+      <button @click="showHero = false" class="absolute top-3 right-3 z-10 w-7 h-7 flex items-center justify-center rounded-full bg-black/20 hover:bg-black/40 text-white/70 hover:text-white transition-colors">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
       <div class="p-8 md:p-10 text-white">
         <template v-if="current === 0">
           <p class="text-sm md:text-base text-white/80 font-semibold">{{ $t('setup.heroWelcome') }}</p>
@@ -130,10 +135,10 @@
         </div>
       </div>
 
-      <div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800 text-center">
-        <router-link to="/theory" class="text-xs text-gray-400 dark:text-gray-500 hover:text-brand dark:hover:text-brand-muted transition-colors">
-          {{ $t('quiz.reviewTheory') }}
-        </router-link>
+      <div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800 text-center text-xs text-gray-400 dark:text-gray-500 space-x-2">
+        <router-link to="/theory" class="hover:text-brand dark:hover:text-brand-muted transition-colors">{{ $t('quiz.reviewTheory') }}</router-link>
+        <span>&middot;</span>
+        <router-link to="/game" class="hover:text-brand dark:hover:text-brand-muted transition-colors">{{ $t('setup.playWithFriend') }}</router-link>
       </div>
     </div>
 
@@ -160,6 +165,7 @@ const router = useRouter()
 const quizStore = useQuizStore()
 const { t } = useI18n()
 
+const showHero = ref(true)
 const slides = [{}, {}, {}]
 const current = ref(0)
 const pause = ref(false)
