@@ -70,17 +70,12 @@
           &middot; {{ $t('setup.perQuiz', { count: quizSize }) }}
         </p>
         <div class="flex items-center justify-center gap-3">
-          <button
-            @click="startQuiz"
-            :disabled="availableCount === 0"
-            class="px-10 py-3.5 text-lg rounded-dc font-semibold transition-all shadow-md"
-            :class="startBtnClass"
-          >{{ $t('setup.start') }}</button>
-          <button
-            @click="showSettings = true"
-            class="w-12 h-12 flex items-center justify-center rounded-dc border-2 border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 hover:border-gray-300 dark:hover:border-gray-600 hover:text-gray-600 dark:hover:text-gray-300 transition-all"
-            title="Settings"
-          >⚙️</button>
+          <BaseButton @click="startQuiz" :disabled="availableCount === 0" variant="primary" size="lg" class="px-10">
+            {{ $t('setup.start') }}
+          </BaseButton>
+          <BaseButton @click="showSettings = true" variant="secondary" class="w-12 h-12 !px-0" title="Settings">
+            ⚙️
+          </BaseButton>
         </div>
       </div>
     </div>
@@ -101,6 +96,7 @@ import { useI18n } from 'vue-i18n'
 import { useQuizStore } from '../store/quiz.js'
 import { questionBank } from '../../../shared/data/questions.js'
 import SettingsModal from '../components/SettingsModal.vue'
+import BaseButton from '../../../components/BaseButton.vue'
 
 const router = useRouter()
 const quizStore = useQuizStore()
@@ -179,10 +175,7 @@ const filteredQuestions = computed(() =>
 const availableCount = computed(() => filteredQuestions.value.length)
 const quizSize = computed(() => Math.min(questionCount.value, availableCount.value))
 
-const startBtnClass = computed(() => {
-  if (availableCount.value === 0) return 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed shadow-none'
-  return 'bg-brand text-white hover:bg-brand-hover cursor-pointer shadow-none'
-})
+
 
 function startQuiz() {
   if (availableCount.value === 0) return

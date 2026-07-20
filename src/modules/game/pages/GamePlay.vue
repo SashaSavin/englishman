@@ -31,14 +31,12 @@
       </div>
 
       <div class="flex gap-3">
-        <button v-if="selectedAnswer !== null && currentIndex < questions.length - 1" @click="nextQuestion"
-          class="flex-1 py-3 rounded-dc font-semibold text-white bg-brand hover:bg-brand-hover transition-colors">
+        <BaseButton v-if="selectedAnswer !== null && currentIndex < questions.length - 1" @click="nextQuestion" variant="primary" class="flex-1">
           {{ $t('game.next') }}
-        </button>
-        <button v-if="selectedAnswer !== null && currentIndex === questions.length - 1" @click="finish"
-          class="flex-1 py-3 rounded-dc font-semibold text-white bg-brand hover:bg-brand-hover transition-colors">
+        </BaseButton>
+        <BaseButton v-if="selectedAnswer !== null && currentIndex === questions.length - 1" @click="finish" variant="primary" class="flex-1">
           {{ $t('game.finish') }}
-        </button>
+        </BaseButton>
       </div>
     </div>
   </div>
@@ -48,6 +46,7 @@
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '../store/game.js'
+import BaseButton from '../../../components/BaseButton.vue'
 
 const router = useRouter()
 const store = useGameStore()

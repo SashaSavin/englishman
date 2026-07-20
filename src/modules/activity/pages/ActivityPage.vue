@@ -8,20 +8,20 @@
       <h2 class="text-2xl font-extrabold mb-1">{{ $t('activity.title') }}</h2>
       <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">{{ $t('activity.subtitle') }}</p>
 
-      <div class="flex gap-6 mb-8 text-sm">
-        <div>
-          <span class="text-3xl font-extrabold text-gray-800 dark:text-gray-100 tracking-tight">{{ stats.total }}</span>
-          <span class="text-gray-500 dark:text-gray-400 ml-1">{{ $t('activity.totalQuizzes') }}</span>
-        </div>
-        <div>
-          <span class="text-3xl font-extrabold text-gray-800 dark:text-gray-100 tracking-tight">{{ stats.days }}</span>
-          <span class="text-gray-500 dark:text-gray-400 ml-1">{{ $t('activity.activeDays') }}</span>
-        </div>
-        <div>
-          <span class="text-3xl font-extrabold text-gray-800 dark:text-gray-100 tracking-tight">{{ stats.currentStreak }}</span>
-          <span class="text-gray-500 dark:text-gray-400 ml-1">{{ $t('activity.streak') }}</span>
-        </div>
+    <div class="flex gap-4 md:gap-6 mb-8">
+      <div>
+        <span class="text-2xl md:text-3xl font-extrabold text-gray-800 dark:text-gray-100 tracking-tight">{{ stats.total }}</span>
+        <span class="text-xs md:text-sm text-gray-500 dark:text-gray-400 ml-1">{{ $t('activity.totalQuizzes') }}</span>
       </div>
+      <div>
+        <span class="text-2xl md:text-3xl font-extrabold text-gray-800 dark:text-gray-100 tracking-tight">{{ stats.days }}</span>
+        <span class="text-xs md:text-sm text-gray-500 dark:text-gray-400 ml-1">{{ $t('activity.activeDays') }}</span>
+      </div>
+      <div>
+        <span class="text-2xl md:text-3xl font-extrabold text-gray-800 dark:text-gray-100 tracking-tight">{{ stats.currentStreak }}</span>
+        <span class="text-xs md:text-sm text-gray-500 dark:text-gray-400 ml-1">{{ $t('activity.streak') }}</span>
+      </div>
+    </div>
 
       <div class="overflow-x-auto pb-2">
         <div class="inline-flex" style="padding-left: 30px;">
@@ -33,16 +33,16 @@
 
         <div class="flex">
           <div class="flex flex-col gap-[3px]" style="width: 30px; flex-shrink: 0;">
-            <span class="h-[12px] text-[10px] text-gray-400 dark:text-gray-500 leading-none flex items-end">Mon</span>
+            <span class="h-[12px] text-[10px] text-gray-400 dark:text-gray-500 leading-none flex items-end">{{ days[0] }}</span>
             <span class="h-[12px] text-[10px] text-gray-400 dark:text-gray-500 leading-none"></span>
-            <span class="h-[12px] text-[10px] text-gray-400 dark:text-gray-500 leading-none flex items-end">Wed</span>
+            <span class="h-[12px] text-[10px] text-gray-400 dark:text-gray-500 leading-none flex items-end">{{ days[1] }}</span>
             <span class="h-[12px] text-[10px] text-gray-400 dark:text-gray-500 leading-none"></span>
-            <span class="h-[12px] text-[10px] text-gray-400 dark:text-gray-500 leading-none flex items-end">Fri</span>
+            <span class="h-[12px] text-[10px] text-gray-400 dark:text-gray-500 leading-none flex items-end">{{ days[2] }}</span>
           </div>
 
           <div class="grid gap-[3px]" style="grid-template-rows: repeat(7, 12px); grid-auto-flow: column;">
             <div v-for="(day, i) in flatDays" :key="i"
-              :title="day ? day.date + ': ' + day.count + ' quiz' + (day.count !== 1 ? 'zes' : '') : ''"
+              :title="day ? tooltip(day) : ''"
               class="w-[12px] h-[12px] rounded-[2px]"
               :class="day && day.count === 0 ? 'bg-gray-100 dark:bg-gray-700' : ''"
               :style="day && day.count > 0 ? { backgroundColor: fillColor(day.count) } : (day ? {} : { visibility: 'hidden' })"
@@ -67,9 +67,11 @@
 <script setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useActivity } from '../../../shared/composables/useActivity.js'
 
 const router = useRouter()
+const { t } = useI18n()
 const { getWeeks, getStats } = useActivity()
 
 const brandHex = '#5865F2'
@@ -78,8 +80,12 @@ const weeks = computed(() => getWeeks())
 const flatDays = computed(() => weeks.value.flat())
 const stats = computed(() => getStats())
 
+const dayNames = computed(() => t('activity.days').split('_'))
+const monthNames = computed(() => t('activity.months').split('_'))
+const days = computed(() => dayNames.value)
+
 const months = computed(() => {
-  const names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const names = monthNames.value
   const cols = []
   let prev = -1
   const cellW = 15
@@ -106,6 +112,10 @@ function fillColor(count) {
   if (count <= 5) return brandHex + '66'
   if (count <= 10) return brandHex + '99'
   return brandHex
+}
+
+function tooltip(day) {
+  return t('activity.quizTooltip', { date: day.date, count: day.count }, day.count)
 }
 
 function goBack() {

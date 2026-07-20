@@ -194,7 +194,10 @@
     "activeDays": "дней активно",
     "streak": "дней подряд",
     "less": "Меньше",
-    "more": "Больше"
+    "more": "Больше",
+    "months": "Янв_Фев_Мар_Апр_Май_Июн_Июл_Авг_Сен_Окт_Ноя_Дек",
+    "days": "Пн_Ср_Пт",
+    "quizTooltip": "{date}: {count} квиз | {date}: {count} квиза | {date}: {count} квизов"
   },
   "tense": {
     "present-simple": "Present Simple",

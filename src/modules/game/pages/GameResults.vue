@@ -19,17 +19,19 @@
       </div>
     </div>
 
-    <router-link to="/game"
-      class="inline-block w-full py-3 rounded-dc font-semibold text-center text-white bg-brand hover:bg-brand-hover transition-colors">
+    <BaseButton @click="$router.push('/game')" variant="primary" class="w-full" size="lg">
       {{ $t('game.playAgain') }}
-    </router-link>
+    </BaseButton>
   </div>
 </template>
 
 <script setup>
 import { computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useGameStore } from '../store/game.js'
+import BaseButton from '../../../components/BaseButton.vue'
 
+const router = useRouter()
 const store = useGameStore()
 const players = computed(() => store.game?.players || [])
 const winner = computed(() => {

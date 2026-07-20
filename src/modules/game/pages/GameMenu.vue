@@ -20,11 +20,10 @@
     </div>
 
     <form v-if="mode" novalidate @submit.prevent="handleSubmit" class="space-y-3">
-      <input v-model="name" :placeholder="$t('game.namePlaceholder')" maxlength="20" required autocomplete="off"
-        class="w-full px-4 py-2.5 rounded-dc bg-white dark:bg-dc-input text-gray-800 dark:text-dc-text-normal placeholder:text-gray-400 dark:placeholder:text-dc-text-muted border border-gray-300 dark:border-dc-border focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-colors" />
+      <BaseInput v-model="name" :placeholder="$t('game.namePlaceholder')" maxlength="20" required />
 
-      <input v-if="mode === 'join'" v-model="roomCode" :placeholder="$t('game.codePlaceholder')" maxlength="6" required autocomplete="off"
-        class="w-full px-4 py-2.5 rounded-dc bg-white dark:bg-dc-input text-gray-800 dark:text-dc-text-normal placeholder:text-gray-400 dark:placeholder:text-dc-text-muted border border-gray-300 dark:border-dc-border focus:border-brand focus:ring-1 focus:ring-brand outline-none uppercase tracking-widest transition-colors" />
+      <BaseInput v-if="mode === 'join'" v-model="roomCode" :placeholder="$t('game.codePlaceholder')" maxlength="6" required
+        class="uppercase tracking-widest" />
 
       <p v-if="error" class="text-red-400 text-sm">{{ error }}</p>
       <p v-if="translatedError" class="text-red-400 text-sm">{{ translatedError }}</p>
@@ -45,6 +44,7 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '../store/game.js'
 import { useI18n } from 'vue-i18n'
+import BaseInput from '../../../components/BaseInput.vue'
 
 const router = useRouter()
 const store = useGameStore()

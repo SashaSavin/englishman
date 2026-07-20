@@ -22,10 +22,9 @@
       </div>
     </div>
 
-    <button v-if="store.isCreator && store.game.players.length === 2" @click="handleStart" :disabled="store.loading"
-      class="w-full py-3 rounded-dc font-semibold text-white bg-brand hover:bg-brand-hover transition-colors disabled:opacity-50">
+    <BaseButton v-if="store.isCreator && store.game.players.length === 2" @click="handleStart" :disabled="store.loading" variant="primary" class="w-full" size="lg">
       {{ $t('game.startBtn') }}
-    </button>
+    </BaseButton>
 
     <p v-else class="text-gray-500 dark:text-dc-text-muted italic">{{ $t('game.waitOpponent') }}</p>
   </div>
@@ -35,6 +34,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '../store/game.js'
+import BaseButton from '../../../components/BaseButton.vue'
 
 const router = useRouter()
 const store = useGameStore()

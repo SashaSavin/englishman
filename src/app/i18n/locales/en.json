@@ -194,7 +194,10 @@
     "activeDays": "days active",
     "streak": "day streak",
     "less": "Less",
-    "more": "More"
+    "more": "More",
+    "months": "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec",
+    "days": "Mon_Wed_Fri",
+    "quizTooltip": "{date}: {count} quiz | {date}: {count} quizzes"
   },
   "tense": {
     "present-simple": "Present Simple",
