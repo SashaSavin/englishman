@@ -210,7 +210,7 @@
     "join": "Присоединиться",
     "namePlaceholder": "Ваше имя",
     "nameRequired": "Имя обязательно",
-    "codePlaceholder": "Код комнаты",
+    "codePlaceholder": "Код сервера",
     "codeRequired": "Код обязателен",
     "createBtn": "Создать игру",
     "joinBtn": "Присоединиться",
