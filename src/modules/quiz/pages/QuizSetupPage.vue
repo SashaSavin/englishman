@@ -1,47 +1,57 @@
 <template>
-  <div class="max-w-2xl mx-auto">
+  <div>
+    <div class="bg-gradient-to-r from-brand to-blue-600 rounded-dc-md p-8 md:p-10 mb-6 text-white">
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Englishman</h1>
+      <p class="text-white/70 mt-1.5 text-sm md:text-base max-w-lg">{{ $t('setup.heroSub') }}</p>
+    </div>
+
     <div class="bg-white dark:bg-dc-surface rounded-dc-md shadow-md p-6 md:p-10 transition-colors">
       <div class="text-center mb-8">
         <h2 class="text-2xl font-extrabold mb-2">{{ $t('setup.title') }}</h2>
         <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-normal">{{ $t('setup.description') }}</p>
       </div>
 
-      <div class="mb-6">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-sm font-bold text-gray-600 dark:text-gray-300">{{ $t('setup.tenses') }}</h3>
-          <div class="flex gap-2 text-xs">
-            <button @click="selectAllTenses" class="text-brand dark:text-brand-muted hover:underline">{{ $t('setup.selectAll') }}</button>
-            <button @click="clearAllTenses" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:underline">{{ $t('setup.clear') }}</button>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-gray-600 dark:text-gray-300">{{ $t('setup.tenses') }}</h3>
+            <div class="flex gap-2 text-xs">
+              <button @click="selectAllTenses" class="text-brand dark:text-brand-muted hover:underline">{{ $t('setup.selectAll') }}</button>
+              <button @click="clearAllTenses" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:underline">{{ $t('setup.clear') }}</button>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-3">
+            <button
+              v-for="t in tenseMeta" :key="t.key"
+              @click="toggleTense(t.key)"
+              class="rounded-dc-md p-4 text-center border-2 transition-all duration-200"
+              :class="tenseCardClass(t)"
+            >
+              <div class="font-semibold text-xs" :class="tenseTextClass(t)">{{ t.label }}</div>
+              <div class="text-xs mt-0.5" :class="tenseSubClass(t)">Simple</div>
+            </button>
           </div>
         </div>
-        <div class="grid grid-cols-3 gap-3">
-          <button
-            v-for="t in tenseMeta" :key="t.key"
-            @click="toggleTense(t.key)"
-            class="rounded-dc-md p-4 text-center border-2 transition-all duration-200"
-            :class="tenseCardClass(t)"
-          >
-            <div class="font-semibold text-sm" :class="tenseTextClass(t)">{{ t.label }}</div>
-            <div class="text-xs mt-0.5" :class="tenseSubClass(t)">Simple</div>
-          </button>
-        </div>
-      </div>
 
-      <div class="mb-6">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="text-sm font-bold text-gray-600 dark:text-gray-300">{{ $t('setup.forms') }}</h3>
-          <div class="flex gap-2 text-xs">
-            <button @click="selectAllForms" class="text-brand dark:text-brand-muted hover:underline">{{ $t('setup.selectAll') }}</button>
-            <button @click="clearAllForms" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:underline">{{ $t('setup.clear') }}</button>
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-gray-600 dark:text-gray-300">{{ $t('setup.forms') }}</h3>
+            <div class="flex gap-2 text-xs">
+              <button @click="selectAllForms" class="text-brand dark:text-brand-muted hover:underline">{{ $t('setup.selectAll') }}</button>
+              <button @click="clearAllForms" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:underline">{{ $t('setup.clear') }}</button>
+            </div>
           </div>
-        </div>
-        <div class="flex gap-3">
-          <button
-            v-for="f in formMeta" :key="f.key"
-            @click="toggleForm(f.key)"
-            class="flex-1 py-3 rounded-dc border-2 font-semibold text-xs md:text-sm leading-tight transition-all duration-200"
-            :class="formBtnClass(f.key)"
-          >{{ f.label }}</button>
+          <div class="grid grid-cols-3 gap-3">
+            <button
+              v-for="f in formMeta" :key="f.key"
+              @click="toggleForm(f.key)"
+              class="p-4 rounded-dc-md text-center border-2 transition-all duration-200"
+              :class="formBtnClass(f.key)"
+            >
+              <div class="font-semibold text-sm">{{ f.label.split(' ')[0] }}</div>
+              <div class="text-xs mt-0.5">{{ f.label.split(' ').slice(1).join(' ') }}</div>
+            </button>
+          </div>
         </div>
       </div>
 

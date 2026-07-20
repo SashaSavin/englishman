@@ -1,9 +1,9 @@
 <template>
-  <div v-if="!quizStore.questions.length" class="max-w-2xl mx-auto text-center py-12 text-gray-500 dark:text-gray-400">
+  <div v-if="!quizStore.questions.length" class="text-center py-12 text-gray-500 dark:text-gray-400">
     {{ $t('quiz.noSession') }}
     <router-link to="/" class="text-brand dark:text-brand-muted hover:underline">{{ $t('quiz.startNew') }}</router-link>
   </div>
-  <div v-else class="max-w-2xl mx-auto">
+  <div v-else>
     <div class="bg-white dark:bg-dc-surface rounded-dc-md shadow-md p-6 md:p-10 text-center transition-colors">
       <div class="text-6xl mb-6">{{ emoji }}</div>
       <h2 class="text-2xl font-extrabold mb-2">{{ $t('results.title') }}</h2>

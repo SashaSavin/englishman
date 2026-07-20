@@ -1,13 +1,13 @@
 <template>
-  <div class="max-w-2xl mx-auto">
+  <div>
     <button @click="goBack" class="mb-4 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
       {{ $t('bookmarks.back') }}
     </button>
 
     <div class="bg-white dark:bg-dc-surface rounded-dc-md shadow-md p-6 md:p-8 transition-colors">
-      <div class="flex items-center justify-between mb-6">
+      <div class="mb-6 md:flex md:items-center md:justify-between">
         <h2 class="text-2xl font-extrabold">{{ $t('bookmarks.title') }}</h2>
-        <span class="text-sm text-gray-400 dark:text-gray-500">{{ bookmarkedQuestions.length }} / {{ questionBank.length }}</span>
+        <span class="block mt-1 md:mt-0 text-sm text-gray-400 dark:text-gray-500">{{ bookmarkedQuestions.length }} / {{ questionBank.length }}</span>
       </div>
 
       <div v-if="!bookmarkedQuestions.length" class="text-center py-12 text-gray-400 dark:text-gray-500">
