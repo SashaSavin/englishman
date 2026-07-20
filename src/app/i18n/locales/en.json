@@ -178,6 +178,11 @@
     "quickTip": "Quick tip",
     "readTheory": "Read full theory →"
   },
+  "toast": {
+    "networkError": "Network error. Check your connection.",
+    "invalidResponse": "Invalid server response. Try again.",
+    "somethingWrong": "Something went wrong."
+  },
   "sidebar": {
     "home": "Quiz",
     "theory": "Theory",

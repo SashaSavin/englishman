@@ -21,7 +21,6 @@
           class="uppercase tracking-widest" />
 
         <p v-if="error" class="text-red-400 text-sm">{{ error }}</p>
-        <p v-if="translatedError" class="text-red-400 text-sm">{{ translatedError }}</p>
 
         <BaseButton type="submit" :disabled="!canSubmit" :loading="store.loading" variant="primary" class="w-full">
           {{ mode === 'create' ? $t('game.createBtn') : $t('game.joinBtn') }}
@@ -32,16 +31,18 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '../store/game.js'
 import { useI18n } from 'vue-i18n'
+import { useToast } from '../../../shared/composables/useToast.js'
 import BaseInput from '../../../components/BaseInput.vue'
 import BaseButton from '../../../components/BaseButton.vue'
 
 const router = useRouter()
 const store = useGameStore()
 const { t } = useI18n()
+const toast = useToast()
 
 const modes = computed(() => [
   { key: 'create', label: t('game.create') },
@@ -51,12 +52,14 @@ const modes = computed(() => [
 const errorMap = {
   'Game not found': () => t('game.errorNotFound'),
   'Request failed': () => t('game.errorRequestFailed'),
+  'Network error': () => t('toast.networkError'),
+  'Invalid server response': () => t('toast.invalidResponse'),
 }
 
-const translatedError = computed(() => {
-  if (!store.error) return ''
-  const fn = errorMap[store.error]
-  return fn ? fn() : store.error
+watch(() => store.error, (val) => {
+  if (!val) return
+  const fn = errorMap[val]
+  toast.error(fn ? fn() : t('toast.somethingWrong'))
 })
 
 const mode = ref('create')

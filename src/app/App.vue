@@ -14,6 +14,7 @@
     </div>
 
     <MobileNav />
+    <ToastContainer />
   </div>
 </template>
 
@@ -23,10 +24,10 @@ import { useTheme } from '../shared/composables/useTheme.js'
 import AppHeader from '../components/AppHeader.vue'
 import Sidebar from '../components/Sidebar.vue'
 import MobileNav from '../components/MobileNav.vue'
+import ToastContainer from '../components/ToastContainer.vue'
 
 const { init } = useTheme()
 init()
-
 const sidebarExpanded = ref(true)
 </script>
 

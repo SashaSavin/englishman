@@ -1,11 +1,23 @@
 const BASE = ''
 
 async function api(path, opts = {}) {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { 'Content-Type': 'application/json', ...opts.headers },
-    ...opts,
-  })
-  const data = await res.json()
+  let res
+  try {
+    res = await fetch(`${BASE}${path}`, {
+      headers: { 'Content-Type': 'application/json', ...opts.headers },
+      ...opts,
+    })
+  } catch {
+    throw new Error('Network error')
+  }
+
+  let data
+  try {
+    data = await res.json()
+  } catch {
+    throw new Error('Invalid server response')
+  }
+
   if (!res.ok) throw new Error(data.error || 'Request failed')
   return data
 }
