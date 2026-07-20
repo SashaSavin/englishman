@@ -41,7 +41,8 @@
     "noSession": "No quiz session.",
     "startNew": "Start a new quiz",
     "timeUp": "Time's up!",
-    "timeLeft": "{s}s left"
+    "timeLeft": "{s}s left",
+    "reviewTheory": "Review the theory"
   },
   "results": {
     "title": "Quiz Complete!",

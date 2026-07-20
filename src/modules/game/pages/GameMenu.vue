@@ -1,41 +1,33 @@
 <template>
-  <div class="max-w-md mx-auto mt-8 space-y-6">
-    <h1 class="text-3xl font-extrabold text-center">{{ $t('game.title') }}</h1>
+  <div class="max-w-md mx-auto">
+    <div class="bg-white dark:bg-dc-surface rounded-dc-md shadow-md p-6 md:p-8 transition-colors">
+      <h1 class="text-2xl font-extrabold text-center mb-6">{{ $t('game.title') }}</h1>
 
-    <div class="flex flex-col lg:flex-row gap-3">
-      <button @click="mode = 'create'"
-        class="flex-1 py-3 font-semibold rounded-dc transition-colors"
-        :class="mode === 'create'
-          ? 'bg-brand text-white border border-brand shadow-sm'
-          : 'bg-gray-100 dark:bg-dc-surface text-gray-600 dark:text-dc-text-muted border border-gray-200 dark:border-dc-border hover:bg-gray-200 dark:hover:bg-dc-hover'">
-        {{ $t('game.create') }}
-      </button>
-      <button @click="mode = 'join'"
-        class="flex-1 py-3 font-semibold rounded-dc transition-colors"
-        :class="mode === 'join'
-          ? 'bg-brand text-white border border-brand shadow-sm'
-          : 'bg-gray-100 dark:bg-dc-surface text-gray-600 dark:text-dc-text-muted border border-gray-200 dark:border-dc-border hover:bg-gray-200 dark:hover:bg-dc-hover'">
-        {{ $t('game.join') }}
-      </button>
+      <div class="flex bg-gray-100 dark:bg-dc-input rounded-dc p-1 mb-6">
+        <button
+          v-for="m in modes" :key="m.key"
+          @click="mode = m.key"
+          class="flex-1 py-2 text-sm font-semibold rounded-dc transition-all"
+          :class="mode === m.key
+            ? 'bg-white dark:bg-dc-surface text-gray-900 dark:text-white shadow-sm'
+            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'"
+        >{{ m.label }}</button>
+      </div>
+
+      <form novalidate @submit.prevent="handleSubmit" class="space-y-4">
+        <BaseInput v-model="name" :placeholder="$t('game.namePlaceholder')" maxlength="20" required />
+
+        <BaseInput v-if="mode === 'join'" v-model="roomCode" :placeholder="$t('game.codePlaceholder')" maxlength="6" required
+          class="uppercase tracking-widest" />
+
+        <p v-if="error" class="text-red-400 text-sm">{{ error }}</p>
+        <p v-if="translatedError" class="text-red-400 text-sm">{{ translatedError }}</p>
+
+        <BaseButton type="submit" :disabled="!canSubmit" :loading="store.loading" variant="primary" class="w-full">
+          {{ mode === 'create' ? $t('game.createBtn') : $t('game.joinBtn') }}
+        </BaseButton>
+      </form>
     </div>
-
-    <form v-if="mode" novalidate @submit.prevent="handleSubmit" class="space-y-3">
-      <BaseInput v-model="name" :placeholder="$t('game.namePlaceholder')" maxlength="20" required />
-
-      <BaseInput v-if="mode === 'join'" v-model="roomCode" :placeholder="$t('game.codePlaceholder')" maxlength="6" required
-        class="uppercase tracking-widest" />
-
-      <p v-if="error" class="text-red-400 text-sm">{{ error }}</p>
-      <p v-if="translatedError" class="text-red-400 text-sm">{{ translatedError }}</p>
-
-      <button type="submit" :disabled="!canSubmit || store.loading"
-        class="w-full py-3 rounded-dc font-semibold transition-colors"
-        :class="canSubmit && !store.loading
-          ? 'bg-white dark:bg-brand text-brand dark:text-white border-2 dark:border border-brand dark:border-transparent hover:bg-brand/5 dark:hover:bg-brand-hover'
-          : 'bg-gray-200 dark:bg-gray-600 text-gray-400 dark:text-gray-500 cursor-not-allowed border border-gray-200 dark:border-transparent'">
-        {{ mode === 'create' ? $t('game.createBtn') : $t('game.joinBtn') }}
-      </button>
-    </form>
   </div>
 </template>
 
@@ -45,10 +37,17 @@ import { useRouter } from 'vue-router'
 import { useGameStore } from '../store/game.js'
 import { useI18n } from 'vue-i18n'
 import BaseInput from '../../../components/BaseInput.vue'
+import BaseButton from '../../../components/BaseButton.vue'
 
 const router = useRouter()
 const store = useGameStore()
 const { t } = useI18n()
+
+const modes = computed(() => [
+  { key: 'create', label: t('game.create') },
+  { key: 'join', label: t('game.join') },
+])
+
 const errorMap = {
   'Game not found': () => t('game.errorNotFound'),
   'Request failed': () => t('game.errorRequestFailed'),

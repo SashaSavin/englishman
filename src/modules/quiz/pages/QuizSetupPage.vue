@@ -78,6 +78,12 @@
           </BaseButton>
         </div>
       </div>
+
+      <div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800 text-center">
+        <router-link to="/theory" class="text-xs text-gray-400 dark:text-gray-500 hover:text-brand dark:hover:text-brand-muted transition-colors">
+          {{ $t('quiz.reviewTheory') }}
+        </router-link>
+      </div>
     </div>
 
     <SettingsModal
