@@ -21,16 +21,17 @@
         </svg>
       </div>
 
-      <p class="text-lg font-bold mb-8">{{ $t(messageKey) }}</p>
+      <h3 class="text-base font-bold">{{ messageParts[0] }}</h3>
+      <p class="text-gray-500 dark:text-gray-400 text-sm mb-6">{{ messageParts[1] }}</p>
 
-      <div class="flex flex-wrap justify-center gap-3">
-        <button @click="tryAgain" class="px-8 py-3 bg-brand text-white rounded-dc font-semibold hover:bg-brand-hover transition-colors">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <button @click="tryAgain" class="w-full px-4 py-3 bg-brand text-white rounded-dc font-semibold hover:bg-brand-hover transition-colors text-sm leading-tight">
           {{ $t('results.tryAgain') }}
         </button>
-        <button @click="changeFilters" class="px-8 py-3 border-2 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 rounded-dc font-semibold hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+        <button @click="changeFilters" class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 rounded-dc font-semibold hover:border-gray-300 dark:hover:border-gray-600 transition-colors text-sm leading-tight">
           {{ $t('results.changeFilters') }}
         </button>
-        <button @click="reviewAnswers" class="px-8 py-3 border-2 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 rounded-dc font-semibold hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+        <button @click="reviewAnswers" class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 rounded-dc font-semibold hover:border-gray-300 dark:hover:border-gray-600 transition-colors text-sm leading-tight">
           {{ $t('results.review') }}
         </button>
       </div>
@@ -41,11 +42,13 @@
 <script setup>
 import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useQuizStore } from '../store/quiz.js'
 import { useActivity } from '../../../shared/composables/useActivity.js'
 
 const router = useRouter()
 const quizStore = useQuizStore()
+const { t } = useI18n()
 const { logActivity } = useActivity()
 
 onMounted(() => {
@@ -80,6 +83,16 @@ const messageKey = computed(() => {
   if (percent.value >= 75) return 'results.great'
   if (percent.value >= 50) return 'results.good'
   return 'results.keepGoing'
+})
+
+const messageParts = computed(() => {
+  const msg = t(messageKey.value)
+  const idx = Math.min(
+    msg.indexOf('!') === -1 ? Infinity : msg.indexOf('!'),
+    msg.indexOf('.') === -1 ? Infinity : msg.indexOf('.')
+  )
+  if (idx === -1) return [msg, '']
+  return [msg.slice(0, idx + 1), msg.slice(idx + 1).trim()]
 })
 
 const ringColor = computed(() => percent.value >= 80 ? '#22c55e' : percent.value >= 50 ? '#eab308' : '#ef4444')

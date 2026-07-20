@@ -1,8 +1,49 @@
 <template>
   <div>
-    <div class="bg-gradient-to-r from-brand to-blue-600 rounded-dc-md p-8 md:p-10 mb-6 text-white">
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Englishman</h1>
-      <p class="text-white/70 mt-1.5 text-sm md:text-base max-w-lg">{{ $t('setup.heroSub') }}</p>
+    <div class="relative rounded-dc-md mb-6 overflow-hidden select-none"
+      :class="bgGradient"
+      @mouseenter="pause = true"
+      @wheel.passive="onWheel"
+      @mousedown="onDragStart" @mousemove="onDragMove" @mouseup="onDragEnd" @mouseleave="onDragEnd"
+      @touchstart.passive="onDragStart" @touchmove.passive="onDragMove" @touchend="onDragEnd">
+      <div class="p-8 md:p-10 text-white">
+        <template v-if="current === 0">
+          <p class="text-sm md:text-base text-white/80 font-semibold">{{ $t('setup.heroWelcome') }}</p>
+          <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-1">Englishman</h1>
+          <p class="text-white/70 mt-1.5 text-sm md:text-base max-w-lg">{{ $t('setup.heroSub') }}</p>
+        </template>
+        <template v-else-if="current === 1 && stats">
+          <p class="text-sm md:text-base text-white/80 font-semibold">{{ $t('setup.heroStats') }}</p>
+          <div class="flex items-center gap-8 md:gap-12 mt-3">
+            <div class="text-center">
+              <p class="text-2xl md:text-3xl font-extrabold">{{ stats.total }}</p>
+              <p class="text-white/60 text-xs md:text-sm mt-0.5">{{ $t('activity.totalQuizzes') }}</p>
+            </div>
+            <div class="text-center">
+              <p class="text-2xl md:text-3xl font-extrabold">{{ stats.currentStreak }}</p>
+              <p class="text-white/60 text-xs md:text-sm mt-0.5">{{ $t('activity.streak') }}</p>
+            </div>
+            <div v-if="bookmarkCount" class="text-center">
+              <p class="text-2xl md:text-3xl font-extrabold">{{ bookmarkCount }}</p>
+              <p class="text-white/60 text-xs md:text-sm mt-0.5">{{ $t('setup.bookmarks') }}</p>
+            </div>
+          </div>
+        </template>
+        <template v-else-if="current === 2">
+          <p class="text-sm md:text-base text-white/80 font-semibold">{{ $t('setup.heroPractice') }}</p>
+          <p class="text-lg md:text-xl font-bold mt-1">{{ $t('quiz.reviewTheory') }}</p>
+          <router-link to="/theory"
+            class="inline-block mt-3 text-xs font-semibold text-white/70 hover:text-white underline underline-offset-2 transition-colors">
+            {{ $t('tooltip.readTheory') }}
+          </router-link>
+        </template>
+      </div>
+
+      <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+        <button v-for="(_, i) in slides" :key="i" @click="current = i"
+          class="rounded-full transition-all duration-200"
+          :class="current === i ? 'bg-white w-5 h-1.5' : 'bg-white/40 w-1.5 h-1.5 hover:bg-white/60'" />
+      </div>
     </div>
 
     <div class="bg-white dark:bg-dc-surface rounded-dc-md shadow-md p-6 md:p-10 transition-colors">
@@ -27,8 +68,8 @@
               class="rounded-dc-md p-4 text-center border-2 transition-all duration-200"
               :class="tenseCardClass(t)"
             >
-              <div class="font-semibold text-xs" :class="tenseTextClass(t)">{{ t.label }}</div>
-              <div class="text-xs mt-0.5" :class="tenseSubClass(t)">Simple</div>
+            <div class="font-semibold text-xs" :class="tenseTextClass(t)">{{ t.label }}</div>
+            <div class="text-xs mt-0.5" :class="tenseSubClass(t)">Simple</div>
             </button>
           </div>
         </div>
@@ -45,11 +86,11 @@
             <button
               v-for="f in formMeta" :key="f.key"
               @click="toggleForm(f.key)"
-              class="p-4 rounded-dc-md text-center border-2 transition-all duration-200"
+              class="p-2 md:p-4 rounded-dc-md text-center border-2 transition-all duration-200"
               :class="formBtnClass(f.key)"
             >
               <div class="font-semibold text-sm">{{ f.label.split(' ')[0] }}</div>
-              <div class="text-xs mt-0.5">{{ f.label.split(' ').slice(1).join(' ') }}</div>
+              <div class="text-xs mt-0.5 truncate">{{ f.label.split(' ').slice(1).join(' ') }}</div>
             </button>
           </div>
         </div>
@@ -106,17 +147,70 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { useQuizStore } from '../store/quiz.js'
 import { questionBank } from '../../../shared/data/questions.js'
+import { useActivity } from '../../../shared/composables/useActivity.js'
 import SettingsModal from '../components/SettingsModal.vue'
 import BaseButton from '../../../components/BaseButton.vue'
 
 const router = useRouter()
 const quizStore = useQuizStore()
 const { t } = useI18n()
+
+const slides = [{}, {}, {}]
+const current = ref(0)
+const pause = ref(false)
+const { getStats } = useActivity()
+const stats = computed(() => getStats())
+const bgGradient = computed(() => {
+  const gradients = [
+    'bg-gradient-to-r from-brand to-blue-600',
+    'bg-gradient-to-r from-green-600 to-emerald-700',
+    'bg-gradient-to-r from-amber-600 to-orange-700',
+  ]
+  return gradients[current.value]
+})
+
+function next() { current.value = (current.value + 1) % slides.length }
+function prev() { current.value = (current.value - 1 + slides.length) % slides.length }
+
+let dragStart = 0
+let dragging = false
+function onDragStart(e) {
+  pause.value = true
+  dragStart = e.clientX || e.touches?.[0]?.clientX || 0
+  dragging = true
+}
+function onDragMove(e) {
+  if (!dragging) return
+  const x = e.clientX || e.touches?.[0]?.clientX || 0
+  const diff = x - dragStart
+  if (Math.abs(diff) > 60) {
+    dragging = false
+    diff > 0 ? prev() : next()
+  }
+}
+function onDragEnd() {
+  dragging = false
+  pause.value = false
+}
+
+function onWheel(e) {
+  if (Math.abs(e.deltaX) > 20) {
+    e.deltaX > 0 ? next() : prev()
+  }
+}
+
+let timer
+onMounted(() => {
+  timer = setInterval(() => {
+    if (!pause.value) next()
+  }, 5000)
+})
+onUnmounted(() => clearInterval(timer))
 
 const tenseMeta = computed(() => [
   { key: 'present-simple', label: t('setup.presentLabel'), cardBg: 'bg-blue-50 dark:bg-blue-900/20', ring: 'ring-blue-400', border: 'border-blue-300', text: 'text-blue-700 dark:text-blue-300', sub: 'text-blue-500 dark:text-blue-400' },

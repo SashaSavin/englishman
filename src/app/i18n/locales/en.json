@@ -15,6 +15,9 @@
     "title": "Ready to Practice?",
     "description": "Test your knowledge of English tenses — choose what to practice.",
     "heroSub": "Practice English tenses with interactive quizzes, track your progress, and master the simple tenses.",
+    "heroWelcome": "Welcome to",
+    "heroStats": "Your progress",
+    "heroPractice": "Need a refresher?",
     "tenses": "Tenses",
     "forms": "Forms",
     "selectAll": "Select all",
@@ -59,7 +62,7 @@
   },
   "review": {
     "title": "Review Answers",
-    "back": "← Back to Results",
+    "back": "← Back",
     "correct": "Correct",
     "wrong": "Wrong",
     "yourAnswer": "Your answer:",
